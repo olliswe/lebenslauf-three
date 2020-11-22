@@ -1,10 +1,8 @@
-import React, { Suspense } from 'react'
-import { Canvas } from 'react-three-fiber'
-import Asset from "./Asset";
+import React, {Suspense} from 'react'
+import {Canvas} from 'react-three-fiber'
 import Text from "./Text"
 import Model from "./Scene";
-import {OrbitControls} from "drei";
-import {TextGeometry} from "react-three-fiber/components";
+// import {OrbitControls} from "drei";
 
 
 export default function App() {
@@ -25,14 +23,14 @@ export default function App() {
             <Suspense fallback={null}>
                 <Text  position={[-1, 0.8, 0]} size={0.5}>LEBENS</Text>
                 <Text  position={[8.5, 0.8, 0]} size={0.5}>LAUF</Text>
-                <Model offset={0}/>
-                <Model offset={Math.PI/2}/>
+                <Model offset={1}/>
+                <Model offset={-1}/>
             </Suspense>
             <mesh receiveShadow rotation-x={-Math.PI / 2}>
                 <planeBufferGeometry attach="geometry" args={[50, 50]} />
                 <shadowMaterial attach="material" transparent opacity={0.4} />
             </mesh>
-            <OrbitControls/>
+            {/*<OrbitControls/>*/}
         </Canvas>
         </div>
     )

@@ -5,7 +5,7 @@ import { useLoader, useUpdate } from 'react-three-fiber'
 export default function({ children, vAlign = 'center', hAlign = 'left', size = 1, color = '#000000', ...props }) {
     const font = useLoader(THREE.FontLoader, '/bold.blob')
     const config = useMemo(
-        () => ({ font, size: 40, height: 2, curveSegments: 32, bevelEnabled: false, bevelThickness: 6, bevelSize: 2.5, bevelOffset: 0, bevelSegments: 8, }),
+        () => ({ font, size: 40, height: 2, curveSegments: 32, bevelEnabled: false, bevelThickness: 6, bevelSize: 2.5, bevelOffset: 0, bevelSegments: 8}),
         [font]
     )
     const mesh = useUpdate(
@@ -19,10 +19,10 @@ export default function({ children, vAlign = 'center', hAlign = 'left', size = 1
         [children]
     )
     return (
-        <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]} >
+        <group {...props} scale={[0.1 * size, 0.1 * size, 0.2]} >
             <mesh ref={mesh} castShadow>
                 <textGeometry attach="geometry" args={[children, config]} />
-                <meshNormalMaterial attach="material" />
+                <meshPhongMaterial attach="material" color="#F76C6C"/>
             </mesh>
         </group>
     )

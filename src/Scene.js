@@ -6,12 +6,14 @@ source: https://sketchfab.com/3d-models/shoes-08158fa3333a4b288bd2746a6ba6f9e5
 title: Shoes
 */
 
-import * as THREE from 'three'
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
 import {useFrame, useLoader, useThree} from 'react-three-fiber'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 
 const pi = Math.PI
+
+const AMPLITUDE = 200
+const SPEED = 2
 
 export default function Model({offset}) {
   const group = useRef()
@@ -20,11 +22,11 @@ export default function Model({offset}) {
 
 
   useFrame(() => {
-      group.current.rotation.z += Math.sin(clock.getElapsedTime()+offset)/250;
-      group.current.position.y += Math.sin(clock.getElapsedTime()+offset)/250
+      group.current.rotation.z += offset* Math.sin(clock.getElapsedTime()*SPEED)/AMPLITUDE;
+      group.current.position.y += offset* Math.sin(clock.getElapsedTime()*SPEED)/AMPLITUDE
   });
   return (
-    <group ref={group} dispose={null} position={[offset*1.5,1,0]} rotation={[0,pi/2,0]}>
+    <group ref={group} dispose={null} position={[(1-offset)*1.2,1,0]} rotation={[0,pi/2,0]}>
           <mesh castShadow material={materials.Sheos} geometry={nodes.mesh_0.geometry} />
     </group>
   )
